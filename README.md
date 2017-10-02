@@ -27,8 +27,10 @@ npm start
 That's it.
 
 ## This is our chat app will look like.
-[<img width="800" align="middle" src="https://image.ibb.co/cwoABG/rooming.png">]
-[<img width="800" align="middle" src="https://image.ibb.co/dchLBG/chatting.png">]
+<img width="800" align="middle" src="https://image.ibb.co/cwoABG/rooming.png">
+<br />
+<br />
+<img width="800" align="middle" src="https://image.ibb.co/dchLBG/chatting.png">
 
 ## Contributing
 
