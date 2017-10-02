@@ -1,4 +1,4 @@
-# MEAN AUTHENTICATION APP [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/AbdallahBedir/MEAN-STACK)
+# MEAN AUTHENTICATION APP [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/AbdallahBedir/mean_chat_app)
 
 
 [<img width="60" align="middle" src="https://cdn.rawgit.com/gilbarbara/logos/e7b1dc2666c3dabe6c1276abd0a767b6ebd6af43/logos/nodejs-icon.svg">](https://nodejs.org)
@@ -26,6 +26,9 @@ npm start
 ```
 That's it.
 
+## This is our chat app will look like.
+[<img width="800" align="middle" src="https://image.ibb.co/cwoABG/rooming.png">]
+[<img width="800" align="middle" src="https://image.ibb.co/dchLBG/chatting.png">]
 
 ## Contributing
 
