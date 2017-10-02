@@ -357,7 +357,6 @@ var HomeComponent = (function () {
     };
     HomeComponent.prototype.join = function () {
         if (this.model.nickName.trim() != "" && this.model.roomId != 0) {
-            // save nickName and roomId in the localstorage
             this.errorMessage = null;
             this._router.navigate(["/room", this.model.roomId], { queryParams: { nickname: this.model.nickName } });
         }
@@ -388,8 +387,9 @@ var _a, _b;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChatService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_api__ = __webpack_require__("../../../../../src/app/utils/api.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -402,22 +402,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ChatService = (function () {
     function ChatService(_http) {
         this._http = _http;
     }
     ChatService.prototype.getRooms = function () {
-        return this._http.get('http://localhost:3000/api/rooms/')
+        return this._http.get(__WEBPACK_IMPORTED_MODULE_2__utils_api__["a" /* API */].Room.getRooms + "/")
             .map(function (res) { return res.json(); });
     };
     ChatService.prototype.addRoom = function (roomName) {
+        return this._http.post(__WEBPACK_IMPORTED_MODULE_2__utils_api__["a" /* API */].Room.addRoom + "/", { name: roomName })
+            .map(function (res) { return res.json(); });
+    };
+    ChatService.prototype.removeRoom = function (id) {
+        return this._http.delete(__WEBPACK_IMPORTED_MODULE_2__utils_api__["a" /* API */].Room.addRoom + "/" + id)
+            .map(function (res) { return res.json(); });
     };
     ChatService.prototype.addMessageToChat = function (message) {
-        return this._http.post('http://localhost:3000/api/chat/', message)
+        return this._http.post(__WEBPACK_IMPORTED_MODULE_2__utils_api__["a" /* API */].Chat.addMessageToChat + "/", message)
             .map(function (res) { return res.json(); });
     };
     ChatService.prototype.getRoomMessages = function (roomId) {
-        return this._http.get("http://localhost:3000/api/chat/?roomId=" + roomId)
+        return this._http.get(__WEBPACK_IMPORTED_MODULE_2__utils_api__["a" /* API */].Chat.getRoomMessages + "/?roomId=" + roomId)
             .map(function (res) { return res.json(); });
     };
     return ChatService;
@@ -429,6 +436,39 @@ ChatService = __decorate([
 
 var _a;
 //# sourceMappingURL=chat.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/utils/api.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export URL */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return API; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
+
+/**
+ * The URL endpoint to connect the app to the staging server or to the testing server
+ * @type {string}
+ */
+var URL = __WEBPACK_IMPORTED_MODULE_0__environments_environment__["a" /* environment */].production ? "http://localhost:3000/api" : "http://localhost:3000/api";
+/**
+ * An Object that holds all the api endpoints of the backend
+ * @type {Object}
+ */
+var API = {
+    URL: URL,
+    Room: {
+        getRooms: URL + "/rooms",
+        addRoom: URL + "/rooms",
+        removeRoom: URL + "/rooms",
+    },
+    Chat: {
+        addMessageToChat: URL + "/chat",
+        getRoomMessages: URL + "/chat",
+    }
+};
+//# sourceMappingURL=api.js.map
 
 /***/ }),
 

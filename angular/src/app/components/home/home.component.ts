@@ -27,7 +27,6 @@ export class HomeComponent implements OnInit {
 
   join(){
     if(this.model.nickName.trim() != "" && this.model.roomId != 0){
-      // save nickName and roomId in the localstorage
       this.errorMessage = null;
       this._router.navigate(["/room",this.model.roomId],{queryParams:{nickname:this.model.nickName}})
     }

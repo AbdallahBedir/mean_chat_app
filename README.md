@@ -25,10 +25,10 @@ npm start
 `http://localhost:3000`
 ```
 That's it.
+<br />
 
 ## This is our chat app will look like.
 <img width="800" align="middle" src="https://image.ibb.co/cwoABG/rooming.png">
-<br />
 <br />
 <img width="800" align="middle" src="https://image.ibb.co/dchLBG/chatting.png">
 
