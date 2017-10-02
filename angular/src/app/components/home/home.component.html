@@ -1,0 +1,23 @@
+<div class="home-page">
+    <div class="home-panel">
+        <h2>Welcome to our cyber chat app</h2>
+        <div class="form" (keyup.enter)="join()">
+            <div class="form-group">
+                <input name="nickName" [(ngModel)]="model.nickName" placeholder="Choose a nickname.."> 
+            </div>
+            <div class="form-group">
+                <select [(ngModel)]="model.roomId" name="room">
+                    <option value="0">Choose a room...</option>  
+                    <option *ngFor="let r of rooms" [value]="r._id">
+                      {{r.name}}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+              <button class="btn" (click)="join()">Join</button>
+              <p *ngIf="errorMessage" style="color:crimson">{{errorMessage}}</p>
+            </div>
+          </div>
+    </div>
+    <!-- end home-panel -->
+</div>

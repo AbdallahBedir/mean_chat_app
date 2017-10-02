@@ -1,0 +1,21 @@
+<div style="text-align:center" class="wrapper">
+  <div class="header">
+      <div class="leaving_btn">
+          <button (click)="leaveTheRoom()">Leave the room</button>
+      </div>
+      <div class="title">
+          <h1>{{title}}!</h1>
+      </div>    
+  </div>
+  <div class="messages">
+    <div class="message" *ngFor="let m of messages" [class.me]="m.nickname == nickName">
+      <label>{{m.nickname}}: </label>
+      {{m.message}}
+      <label class="time">{{m.createdAt | date:'medium'}}</label>
+    </div>
+    <div class="typing-area">
+      &gt;
+      <input type="text" autofocus (keyup.enter)="sendMessage($event)">
+    </div>
+  </div>
+</div>
