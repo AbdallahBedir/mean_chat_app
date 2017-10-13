@@ -37,14 +37,6 @@ app.use(express.static('./public'));
 
 app.use(cors());
 
-// io.on("connection",(socket)=>{
-//     //socket.broadcast.emit("message","User Connected");
-//     socket.on("chat",(message)=>{
-//         socket.broadcast.emit("message",message);
-//     });
-//     //socket.emit("message","Welcome to Cyper Chat");
-// });
-
 app.use('/api/rooms', rooms);
 
 app.use('/api/chat', chat);
@@ -55,20 +47,6 @@ app.get("/api",(req,res)=>{
         body:"Welcome to cyber chat backend room"
     });
 });
-
-// request.get("http://localhost:3000/api/rooms/",(err,res)=>{
-//     console.log(`res.body.data`,JSON.parse(res.body).data);
-//     let rooms = JSON.parse(res.body).data;
-//     rooms.forEach(function(room) {
-//         io.on("connection",(socket)=>{
-//             //socket.broadcast.emit("message","User Connected");
-//             socket.on(room._id,(message)=>{
-//                 socket.broadcast.emit(room._id,message);
-//             });
-//             //socket.emit("message","Welcome to Cyper Chat");
-//         });     
-//     });
-// });
 
 app.get("*",(req,res)=> {
     res.sendFile(path.join(__dirname,'public/index.html'));    

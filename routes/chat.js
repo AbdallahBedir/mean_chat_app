@@ -27,6 +27,7 @@ io.on("connection",(socket)=>{
 router.post('/', (req, res, next) => {
   room.findById(req.body.roomId,(err,doc)=>{
     if(err){
+      res.status(400);
       res.json({success:false,message:`InCorrent roomId`});
     }
     else{
@@ -40,7 +41,7 @@ router.post('/', (req, res, next) => {
         if(err){
           res.json({
             success:false,
-            message:err
+            message:"Error while saving the message"
           });
         }
         else{
@@ -59,9 +60,13 @@ router.get("/",(req,res,next)=>{
   // If ?roomId={id} is exist , get chat messages for this room
   if(req.query.roomId){
     room.findById(req.query.roomId,(err,doc)=>{
-      if(err) res.json({success:false,message:"Room is not found!"});
+      if(err){
+        res.status(400);
+        res.json({success:false,message:"Room is not found!"});
+      } 
       else if(!doc){
-         res.json({success:false,message:"Room is not found"});
+        res.status(400);
+        res.json({success:false,message:"Room is not found"});
       }
       else{
         Chat.find({
@@ -72,9 +77,10 @@ router.get("/",(req,res,next)=>{
             data:messages
           });
         }).catch(err=>{
+          res.status(400);
           res.json({
             success:false,
-            messages:err
+            messages:"Room is not found!"
           });
         }); 
       }
@@ -86,11 +92,11 @@ router.get("/",(req,res,next)=>{
       res.json({
             success:true,
             data:messages
-        });
+      });
     }).catch( (err) => {
         res.json({
             success:false,
-            message:err
+            message:"Error while fetching chat messages"
         });
     });
   }
@@ -100,12 +106,18 @@ router.get("/",(req,res,next)=>{
 router.delete("/:id",(req,res,next)=>{
   id = req.params["id"];
   if(!id){
+    res.status(400);
     res.json({success:false,message:"Id is not found"})
   }
   else{
     room.findById(id,(err,doc)=>{
       if(err){
+        res.status(400);
         res.json({success:false,message:"Invalid room id"})
+      }
+      else if(!doc){
+        res.status(400);
+        res.json({success:false,message:"Invalid room id"})        
       }
       else{
         Chat.find({room:doc.name}).remove().exec(err =>{

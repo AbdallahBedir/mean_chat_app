@@ -1,5 +1,5 @@
 /**
- * User Interface Describing the chat Object
+ * User Interface Describing the Message Object
  */
 export interface Message{
     nickname:string,

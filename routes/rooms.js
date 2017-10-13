@@ -12,7 +12,7 @@ router.get('/',(req,res,next)=>{
     }).catch( (err) => {
         res.json({
             success:false,
-            message:err
+            message:"Error while fetching the rooms"
         });
     });
 });
@@ -26,7 +26,7 @@ router.post("/",(req,res,next)=>{
         if(err){
             res.json({
                 success:false,
-                message:err
+                message:"Error while saving the room"
             });
         }
         else{
@@ -44,6 +44,7 @@ router.delete("/:id",(req,res,next)=>{
     Room.findByIdAndRemove(roomId).exec().then(removedRoom=>{
         res.json({success:true,message:"room deleted successfuly"})
     }).catch(err=>{
+        res.status(404);
         res.json({success:false,message:"Invalid room Id"})
     });
 })
