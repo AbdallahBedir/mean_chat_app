@@ -202,7 +202,8 @@ module.exports = module.exports.toString();
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChatComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_chat_service__ = __webpack_require__("../../../../../src/app/services/chat.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_chat_service__ = __webpack_require__("../../../../../src/app/services/chat.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -216,13 +217,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ChatComponent = (function () {
     function ChatComponent(_activatedRoute, _chatService, _router) {
         this._activatedRoute = _activatedRoute;
         this._chatService = _chatService;
         this._router = _router;
         this.title = 'welcome';
-        this.socket = io("http://localhost:4000");
+        this.socket = __WEBPACK_IMPORTED_MODULE_2__environments_environment__["a" /* environment */].production ? io() : io("http://localhost:3000");
         this.messages = [];
         this.nickName = "";
         this.disconnected = true;
@@ -286,7 +288,7 @@ ChatComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/chat/chat.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/chat/chat.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_chat_service__["a" /* ChatService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_chat_service__["a" /* ChatService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__services_chat_service__["a" /* ChatService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_chat_service__["a" /* ChatService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _c || Object])
 ], ChatComponent);
 
 var _a, _b, _c;
@@ -451,7 +453,7 @@ var _a;
  * The URL endpoint to connect the app to the staging server or to the testing server
  * @type {string}
  */
-var URL = __WEBPACK_IMPORTED_MODULE_0__environments_environment__["a" /* environment */].production ? "http://localhost:3000/api" : "http://localhost:3000/api";
+var URL = __WEBPACK_IMPORTED_MODULE_0__environments_environment__["a" /* environment */].production ? "https://abdallahbedir-chat-app.herokuapp.com/api" : "http://localhost:3000/api";
 /**
  * An Object that holds all the api endpoints of the backend
  * @type {Object}

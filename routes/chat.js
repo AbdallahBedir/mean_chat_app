@@ -4,24 +4,6 @@ const router      = express.Router();
 const http       = require("http");
 const Chat        = require('../models/Chat');
 const room        = require("../models/Room");
-var server        = http.createServer(app).listen(4000);
-var io            = require("socket.io")(server);
-var Rooms ;
-
-room.find().exec().then(rooms =>{
-  Rooms = rooms;
-});
-
-io.on("connection",(socket)=>{
-  if(Rooms){
-    Rooms.forEach(function(room) {
-      socket.on(room._id,(message)=>{
-        socket.broadcast.emit(room._id,message);
-      });
-    });
-  }
-});
-
 
 // POST a new chat message
 router.post('/', (req, res, next) => {

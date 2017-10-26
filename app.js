@@ -6,14 +6,31 @@ var mongoose    = require('mongoose');
 var bodyParser  = require('body-parser');
 var cors        = require("cors");
 var app         = require("express")();
-var server      = http.createServer(app).listen(3000);
-//var io          = require("socket.io")(server);
+var server      = http.createServer(app).listen(process.env.PORT || 3000);
+var io          = require("socket.io")(server);
 const rooms     = require('./routes/rooms');
 const chat      = require("./routes/chat");
+const room      = require("./models/Room");
+
+var Rooms ;
+
+room.find().exec().then(rooms =>{
+  Rooms = rooms;
+});
+
+io.on("connection",(socket)=>{
+  if(Rooms){
+    Rooms.forEach(function(room) {
+      socket.on(room._id,(message)=>{
+        socket.broadcast.emit(room._id,message);
+      });
+    });
+  }
+});
 
 //mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost/ng2-chat',{ useMongoClient: true, promiseLibrary: global.Promise })
+mongoose.connect("mongodb://AbdallahBedir:ng2-chat1234@ds121225.mlab.com:21225/ng2-chat",{ useMongoClient: true, promiseLibrary: global.Promise })
     .then(()=>console.log(`Successful connection to chat database`))
     .catch((err)=>console.log(`Error while connecting to database chat`,err))
 

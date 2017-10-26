@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { environment as Environment } from '../../../environments/environment';
 import { ChatService } from '../../services/chat.service';
 import { Message } from '../../interfaces/message';
 import { Router } from '@angular/router';
@@ -14,7 +15,7 @@ declare var io:any;
 export class ChatComponent implements OnInit {
 
   title = 'welcome';
-  socket = io("http://localhost:4000"); 
+  socket = Environment.production ? io() : io("http://localhost:3000"); 
   roomId:number;
   messages:Message[] = [];
   nickName = "";

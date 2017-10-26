@@ -14,10 +14,6 @@ To get up and running run:
 # install dependencies
 npm install
 
-#start MongoDB
-sudo service mongod start
-mongo
-
 #run the server
 npm start
 
